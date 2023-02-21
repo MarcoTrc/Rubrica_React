@@ -1,0 +1,61 @@
+{
+  "contatti": [
+    {
+      "ruolo": "admin",
+      "nome": "Marco",
+      "cognome": "Turchiuli",
+      "dataDiNascita": "1988-05-22T00:00:00.000Z",
+      "email": "marcoturchiuli@gmail.com",
+      "indirizzo": {
+        "città": "Lecce",
+        "provincia": "LE",
+        "cap": 73100,
+        "locazione": "via",
+        "indirizzo": "Lequile ",
+        "numero": 66
+      },
+      "sesso": "M",
+      "telefono": "3887299997",
+      "avatar": "https://www.operaproject.it/wp-content/uploads/2018/09/sagoma-uomo.jpg",
+      "id": 1
+    },
+    {
+      "ruolo": "admin",
+      "nome": "Mayra",
+      "cognome": "Pino",
+      "dataDiNascita": "1989-08-08T00:00:00.000Z",
+      "email": "mayrapino@outlook.it",
+      "indirizzo": {
+        "città": "Lecce",
+        "provincia": "LE",
+        "cap": 73100,
+        "locazione": "via",
+        "indirizzo": "Lequile",
+        "numero": 66
+      },
+      "sesso": "F",
+      "telefono": "3891413371",
+      "avatar": "https://curtinvet.com.au/wp-content/uploads/2022/03/person-placeholder-female.jpg",
+      "id": 2
+    },
+    {
+      "ruolo": "user",
+      "nome": "Mauro",
+      "cognome": "Turchiuli",
+      "dataDiNascita": "1986-04-01T00:00:00.000Z",
+      "email": "maurotur@hotmail.it",
+      "indirizzo": {
+        "città": "Lecce",
+        "provincia": "LE",
+        "cap": 73100,
+        "locazione": "via",
+        "indirizzo": "Maremonti",
+        "numero": 10
+      },
+      "sesso": "M",
+      "telefono": "3385265814",
+      "avatar": "https://png.pngtree.com/png-vector/20220617/ourmid/pngtree-default-placeholder-businessman-half-length-portr-png-image_5120974.png",
+      "id": 3
+    }
+  ]
+}

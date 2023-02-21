@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route, Navigate,  } from 'react-router-dom';
+import RouteEnum from './Enum/RouteEnum';
+import Home from './Views/Home';
+import Template from './Template';
+import Inserisci from './Views/Inserisci';
+import Contatti from './Views/Contatti';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Dettaglio from './Views/Dettaglio';
+import Modifica from './Views/Modifica';
+
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Template />}>
+            <Route path="/" element={<Navigate to={RouteEnum.Home} replace={true} />} />
+            <Route path={RouteEnum.Home} element={<Home />} />
+            <Route path={RouteEnum.Inserisci} element={<Inserisci />} />
+            <Route path={RouteEnum.Contatti} element={<Contatti />} />
+            <Route path={RouteEnum.Dettaglio} element={<Dettaglio />} />
+            <Route path={RouteEnum.Modifica} element={<Modifica />} />
+          </Route>
+        </Routes>
+      </Router>
+
+    </>
   );
 }
 
