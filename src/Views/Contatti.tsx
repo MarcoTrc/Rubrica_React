@@ -26,19 +26,19 @@ function Contatti() {
                     <h1>Contatti</h1>
                     <div>
                         {data?.map((contatto: IPersona, index) => <Row key={index} style={{ borderTop: 'solid 1px', padding: 'auto', margin: 10 }}>
-                            <Col md={1} style={{ marginTop: 5 }}>
+                            <Col md={2} style={{ marginTop: 5 }}>
                                 <img src={contatto.avatar} alt="Avatar" style={{ width: 80 }} />
                             </Col>
                             <Col md={2} style={{ margin: 'auto' }}>
                                 <b>Nome</b>: {contatto.nome} {contatto.cognome}
                             </Col>
-                            <Col md={3} style={{ margin: 'auto' }}>
+                            <Col md={4} style={{ margin: 'auto' }}>
                                 <b>Email</b>: {contatto.email}
                             </Col>
-                            <Col md={2} style={{ margin: 'auto' }}>
+                            <Col md={1} style={{ margin: 'auto' }}>
                                 <b>Tel</b>: {contatto.telefono}
                             </Col>
-                            <Col md={2}></Col>
+                            <Col md={1}></Col>
                             <Col md={1} style={{ margin: 'auto' }}>
                                 <Button type="button" variant="primary" onClick={() => navigate(`/dettaglio/${contatto.id}`)}>Dettaglio</Button>
                             </Col>

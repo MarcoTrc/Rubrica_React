@@ -89,7 +89,7 @@ function Inserisci() {
 
     return (
         <>
-            <Container style={{marginTop: 20}}>
+            <Container style={{ marginTop: 20 }}>
                 <Alert show={showAlert} variant="success" onClose={handleAlertClose} dismissible>
                     <Alert.Heading>Inserimento avvenuto con successo!</Alert.Heading>
                     <p>
@@ -108,7 +108,7 @@ function Inserisci() {
                 <Col md={8} style={{ border: 'solid 1px gray', borderRadius: 10, padding: 20 }}>
                     <Form>
                         <Form.Group as={Row} style={{ marginTop: 20 }}>
-                            <Col md={2}>
+                            <Col md={3}>
                                 <Form.Select aria-label="Default select example"
                                     id="ruolo"
                                     value={ruolo}
@@ -120,7 +120,8 @@ function Inserisci() {
                                     <option value="guest">Guest</option>
                                 </Form.Select>
                             </Col>
-                            <Col md={5}>
+                            <Col md={1}></Col>
+                            <Col md={4}>
                                 <Form.Control
                                     id="nome"
                                     placeholder='Nome'
@@ -129,7 +130,7 @@ function Inserisci() {
                                     style={{ marginTop: 10 }}>
                                 </Form.Control>
                             </Col>
-                            <Col md={5}>
+                            <Col md={4}>
                                 <Form.Control
                                     placeholder='Cognome'
                                     id="cognome"
@@ -143,7 +144,7 @@ function Inserisci() {
 
                         <Form.Group as={Row} className="mb-3" style={{ marginTop: 20 }}>
                             <Form.Label column md={2} style={{ marginTop: 10 }}>Data Di Nascita</Form.Label>
-                            <Col md={2}>
+                            <Col md={3}>
                                 <Form.Control
                                     id="data_di_nascita"
                                     type="date"
@@ -152,7 +153,7 @@ function Inserisci() {
                                     style={{ marginTop: 10 }}
                                 />
                             </Col>
-                            <Col md={4}>
+                            <Col md={3}>
                                 <Form.Control type="text"
                                     placeholder='Città'
                                     value={indirizzo.città}
@@ -188,10 +189,10 @@ function Inserisci() {
 
 
                         <Form.Group as={Row} style={{ marginTop: 20 }}>
-                            <Form.Label column md={1} style={{ marginTop: 10 }}>
+                            <Form.Label column md={2} style={{ marginTop: 10 }}>
                                 Indirizzo
                             </Form.Label>
-                            <Col md={1}>
+                            <Col md={2}>
                                 <Form.Select aria-label="Default select example"
                                     id="prefisso"
                                     value={indirizzo.locazione}
@@ -206,7 +207,7 @@ function Inserisci() {
                                     <option value="vico">Vico</option>
                                 </Form.Select>
                             </Col>
-                            <Col md={4}>
+                            <Col md={5}>
                                 <Form.Control type="text"
                                     value={indirizzo.indirizzo}
                                     onChange={e =>
@@ -215,6 +216,7 @@ function Inserisci() {
                                     style={{ marginTop: 10 }}
                                 />
                             </Col>
+                            <Col md={1}></Col>
                             <Form.Label column md={1} style={{ marginTop: 10 }}>
                                 Civico
                             </Form.Label>
@@ -279,18 +281,14 @@ function Inserisci() {
                             </Col>
                         </Form.Group>
 
-                        <Form.Group as={Row} style={{ marginTop: 10 }}>
-                            <Col md={1}>
-                                <Button variant="warning" type="button" onClick={onClickSuInserisci} style={{ marginTop: 10 }} >
-                                    Inserisci
-                                </Button>
-                            </Col>
-                            <Col md={1}>
-                                <Button variant="light" type="button" onClick={resetCampi} style={{ marginTop: 10, marginLeft: 10 }}>
-                                    Azzera
-                                </Button>
-                            </Col>
-                        </Form.Group>
+                        <div className="d-flex justify-content-end" style={{marginTop: 20}}>
+                            <Button variant="warning" type="button" onClick={onClickSuInserisci} style={{ marginTop: 10 }} >
+                                Inserisci
+                            </Button>
+                            <Button variant="light" type="button" onClick={resetCampi} style={{ marginTop: 10, marginLeft: 10 }}>
+                                Azzera
+                            </Button>
+                        </div>
                     </Form>
                 </Col>
             </Row>
