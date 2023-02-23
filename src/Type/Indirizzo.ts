@@ -2,10 +2,10 @@ type Indirizzo = {
 
     città: string,
     provincia: string,
-    cap: number,
+    cap: string,
     locazione: string,
     indirizzo: string
-    numero: number
+    numero: string
 }
 
 export default Indirizzo;

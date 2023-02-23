@@ -4,12 +4,12 @@
       "ruolo": "admin",
       "nome": "Marco",
       "cognome": "Turchiuli",
-      "dataDiNascita": "1988-05-22T00:00:00.000Z",
+      "dataDiNascita": "2000-05-22T00:00:00.000Z",
       "email": "marcoturchiuli@gmail.com",
       "indirizzo": {
         "città": "Lecce",
         "provincia": "LE",
-        "cap": 73100,
+        "cap": "73100",
         "locazione": "via",
         "indirizzo": "Lequile ",
         "numero": 66
@@ -39,23 +39,23 @@
       "id": 2
     },
     {
-      "ruolo": "user",
-      "nome": "Mauro",
-      "cognome": "Turchiuli",
-      "dataDiNascita": "1986-04-01T00:00:00.000Z",
-      "email": "maurotur@hotmail.it",
+      "ruolo": "admin",
+      "nome": "Francesco",
+      "cognome": "Camerino",
+      "dataDiNascita": "2001-09-18T00:00:00.000Z",
+      "email": "fraca@gmail.com",
       "indirizzo": {
-        "città": "Lecce",
-        "provincia": "LE",
-        "cap": 73100,
-        "locazione": "via",
-        "indirizzo": "Maremonti",
-        "numero": 10
+        "città": "lecce",
+        "provincia": "le",
+        "cap": "73100",
+        "locazione": "piazza",
+        "indirizzo": "Mazzini",
+        "numero": "1"
       },
       "sesso": "M",
-      "telefono": "3385265814",
-      "avatar": "https://png.pngtree.com/png-vector/20220617/ourmid/pngtree-default-placeholder-businessman-half-length-portr-png-image_5120974.png",
-      "id": 3
+      "telefono": "3331122333",
+      "avatar": "https://png.pngtree.com/png-vector/20220621/ourmid/pngtree-default-placeholder-businessman-half-length-portr-png-image_5155184.png",
+      "id": 4
     }
   ]
 }

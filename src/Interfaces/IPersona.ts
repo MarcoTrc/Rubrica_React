@@ -8,7 +8,7 @@ interface IPersona {
     ruolo: Ruolo,
     nome: string,
     cognome: string,
-    dataDiNascita: Date | null,
+    dataDiNascita: Date,
     indirizzo: Indirizzo,
     email: string,
     sesso: Sesso,

@@ -4,7 +4,8 @@ enum RouteEnum {
     Inserisci = "/inserisci",
     Contatti = "/contatti",
     Dettaglio = "/dettaglio/:id",
-    Modifica = "/modifica/:id"
+    Modifica = "/modifica/:id",
+    Test = "/test"
 
 }
 

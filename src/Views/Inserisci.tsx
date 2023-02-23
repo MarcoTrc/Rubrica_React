@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Indirizzo from '../Type/Indirizzo';
 import Ruolo from '../Enum/Ruolo';
 import Sesso from '../Enum/Sesso';
@@ -8,6 +8,10 @@ import Form from 'react-bootstrap/Form';
 import { Alert, Col, Container, Row } from 'react-bootstrap';
 import { useAddContattiMutation } from "../store/API";
 import { useNavigate } from 'react-router';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import FormSubmit from '../Type/FormSubmit';
+import { contattoValidation } from '../Validation/FormValidation';
 
 
 function Inserisci() {
@@ -21,38 +25,19 @@ function Inserisci() {
     const [ruolo, setRuolo] = useState<Ruolo>(Ruolo.guest);
     const [nome, setNome] = useState<string>('');
     const [cognome, setCognome] = useState<string>('');
-    const [dataDiNascita, setDataDiNascita] = useState<Date | null>(null);
+    const [dataDiNascita, setDataDiNascita] = useState<string>('');
     const [indirizzo, setIndirizzo] = useState<Indirizzo>({
         città: '',
         provincia: '',
-        cap: 0,
+        cap: '',
         locazione: '',
         indirizzo: '',
-        numero: 0,
+        numero: ''
     });
     const [email, setEmail] = useState<string>('');
     const [sesso, setSesso] = useState<Sesso>(Sesso.NonSpecificato);
     const [telefono, setTelefono] = useState<string>('');
     const [avatar, setAvatar] = useState<string>('');
-
-    const resetCampi = () => {
-        setAvatar("")
-        setRuolo(Ruolo.guest)
-        setNome("")
-        setCognome("")
-        setDataDiNascita(null)
-        setEmail("")
-        setIndirizzo({
-            città: '',
-            provincia: '',
-            cap: 0,
-            locazione: '',
-            indirizzo: '',
-            numero: 0,
-        })
-        setSesso(Sesso.NonSpecificato)
-        setTelefono("")
-    }
 
     const [contatti, setContatti] = useState<IPersona[]>([]);
 
@@ -62,12 +47,55 @@ function Inserisci() {
         setContatti(contattiAggiornati);
     }
 
-    const onClickSuInserisci = () => {
+    const goToContatti = () => {
+        navigate(`/contatti`)
+    }
+
+    const handleAlertClose = () => {
+        setShowAlert(false);
+    };
+
+
+    //........................VALIDAZIONE........................
+
+    const {
+        register,
+        handleSubmit,
+        watch,
+        setValue,
+        formState: { errors }
+    } = useForm<FormSubmit>({
+        mode: 'onChange',
+        resolver: yupResolver(contattoValidation)
+    });
+
+    useEffect(() => {
+
+        const watchedValues = watch();
+        Object.keys(watchedValues).forEach((key)  => {
+            setValue(key as keyof FormSubmit, watchedValues[key as keyof FormSubmit]);
+        });
+
+        // setFocus("nome" , { shouldSelect: false });
+        // setFocus("cognome", { shouldSelect: false });
+        // setFocus("dataDiNascita", { shouldSelect: false });
+        // setFocus("citta", { shouldSelect: false });
+        // setFocus("cap", { shouldSelect: false });
+        // setFocus("indirizzo", { shouldSelect: false });
+        // setFocus("provincia", { shouldSelect: false });
+        // setFocus("civico", { shouldSelect: false });
+        // setFocus("email", { shouldSelect: false });
+        // setFocus("telefono", { shouldSelect: false });
+        // setFocus("avatar", { shouldSelect: false });
+
+    }, [setValue, watch]);
+
+    const onSubmit = (data: FormSubmit) => {
         const nuovoContatto: IPersona = {
             ruolo: ruolo,
             nome: nome,
             cognome: cognome,
-            dataDiNascita: dataDiNascita!,
+            dataDiNascita: new Date(dataDiNascita),
             email: email,
             indirizzo: indirizzo,
             sesso: sesso,
@@ -76,15 +104,28 @@ function Inserisci() {
         }
         inserisciContatto(nuovoContatto);
         setShowAlert(true);
-    }
-
-    const goToContatti = () => {
-        navigate(`/contatti`)
-    }
-
-    const handleAlertClose = () => {
-        setShowAlert(false);
     };
+
+    //........................VALIDAZIONE........................
+
+    const resetCampi = () => {
+        setAvatar("")
+        setRuolo(Ruolo.guest)
+        setNome("")
+        setCognome("")
+        setDataDiNascita('')
+        setEmail("")
+        setIndirizzo({
+            città: '',
+            provincia: '',
+            cap: '',
+            locazione: '',
+            indirizzo: '',
+            numero: '',
+        })
+        setSesso(Sesso.NonSpecificato)
+        setTelefono("")
+    }
 
 
     return (
@@ -106,7 +147,7 @@ function Inserisci() {
             <h1 style={{ marginLeft: 20, marginTop: 30 }}>Inserisci un nuovo contatto</h1>
             <Row style={{ marginLeft: 20 }}>
                 <Col md={8} style={{ border: 'solid 1px gray', borderRadius: 10, padding: 20 }}>
-                    <Form>
+                    <Form onSubmit={handleSubmit(onSubmit)}>
                         <Form.Group as={Row} style={{ marginTop: 20 }}>
                             <Col md={3}>
                                 <Form.Select aria-label="Default select example"
@@ -123,21 +164,28 @@ function Inserisci() {
                             <Col md={1}></Col>
                             <Col md={4}>
                                 <Form.Control
-                                    id="nome"
+                                    type='text'
+                                    {...register('nome')}
+                                    className={`form-control ${errors.nome ? 'is-invalid' : ''}`}
                                     placeholder='Nome'
                                     value={nome}
                                     onChange={(event) => setNome(event.target.value)}
-                                    style={{ marginTop: 10 }}>
+                                    style={{ marginTop: 10 }}
+                                >
                                 </Form.Control>
+                                <div className="invalid-feedback">{errors.nome?.message}</div>
                             </Col>
                             <Col md={4}>
                                 <Form.Control
+                                    type='text'
+                                    {...register('cognome')}
+                                    className={`form-control ${errors.cognome ? 'is-invalid' : ''}`}
                                     placeholder='Cognome'
-                                    id="cognome"
                                     value={cognome}
                                     onChange={(event) => setCognome(event.target.value)}
                                     style={{ marginTop: 10 }}>
                                 </Form.Control>
+                                <div className="invalid-feedback">{errors.cognome?.message}</div>
                             </Col>
                             <Col md={5}></Col>
                         </Form.Group>
@@ -146,15 +194,20 @@ function Inserisci() {
                             <Form.Label column md={2} style={{ marginTop: 10 }}>Data Di Nascita</Form.Label>
                             <Col md={3}>
                                 <Form.Control
-                                    id="data_di_nascita"
                                     type="date"
-                                    value={dataDiNascita ? dataDiNascita.toISOString().substr(0, 10) : ''}
-                                    onChange={e => setDataDiNascita(new Date(e.target.value))}
+                                    {...register('dataDiNascita')}
+                                    className={`form-control ${errors.dataDiNascita ? 'is-invalid' : ''}`}
+                                    value={dataDiNascita}
+                                    onChange={e => setDataDiNascita(e.target.value)}
                                     style={{ marginTop: 10 }}
                                 />
+                                <div className="invalid-feedback">{errors.dataDiNascita?.message}</div>
                             </Col>
                             <Col md={3}>
-                                <Form.Control type="text"
+                                <Form.Control
+                                    type="text"
+                                    {...register('citta')}
+                                    className={`form-control ${errors.citta ? 'is-invalid' : ''}`}
                                     placeholder='Città'
                                     value={indirizzo.città}
                                     onChange={e =>
@@ -164,7 +217,10 @@ function Inserisci() {
                                 />
                             </Col>
                             <Col md={2}>
-                                <Form.Control type="text"
+                                <Form.Control
+                                    type="text"
+                                    {...register('provincia')}
+                                    className={`form-control ${errors.provincia ? 'is-invalid' : ''}`}
                                     placeholder='Provincia'
                                     value={indirizzo.provincia}
                                     onChange={e =>
@@ -172,21 +228,23 @@ function Inserisci() {
                                     }
                                     style={{ marginTop: 10 }}
                                 />
+                                <div className="invalid-feedback">{errors.provincia?.message}</div>
                             </Col>
-                            <Form.Label column md={1} style={{ marginTop: 10 }}>
-                                Cap
-                            </Form.Label>
-                            <Col md={1}>
-                                <Form.Control type="number"
+                            <Col md={2}>
+                                <Form.Control
+                                    type="text"
+                                    {...register('cap')}
+                                    className={`form-control ${errors.cap ? 'is-invalid' : ''}`}
+                                    placeholder='CAP'
                                     value={indirizzo.cap}
                                     onChange={e =>
-                                        setIndirizzo({ ...indirizzo, cap: parseInt(e.target.value) })
+                                        setIndirizzo({ ...indirizzo, cap: e.target.value })
                                     }
                                     style={{ marginTop: 10 }}
                                 />
+                                <div className="invalid-feedback">{errors.cap?.message}</div>
                             </Col>
                         </Form.Group>
-
 
                         <Form.Group as={Row} style={{ marginTop: 20 }}>
                             <Form.Label column md={2} style={{ marginTop: 10 }}>
@@ -208,7 +266,10 @@ function Inserisci() {
                                 </Form.Select>
                             </Col>
                             <Col md={5}>
-                                <Form.Control type="text"
+                                <Form.Control
+                                    type="text"
+                                    {...register('indirizzo')}
+                                    className={`form-control ${errors.indirizzo ? 'is-invalid' : ''}`}
                                     value={indirizzo.indirizzo}
                                     onChange={e =>
                                         setIndirizzo({ ...indirizzo, indirizzo: e.target.value })
@@ -221,10 +282,13 @@ function Inserisci() {
                                 Civico
                             </Form.Label>
                             <Col md={1}>
-                                <Form.Control type="number"
+                                <Form.Control
+                                    type="text"
+                                    {...register('civico')}
+                                    className={`form-control ${errors.civico ? 'is-invalid' : ''}`}
                                     value={indirizzo.numero}
                                     onChange={e =>
-                                        setIndirizzo({ ...indirizzo, numero: parseInt(e.target.value) })
+                                        setIndirizzo({ ...indirizzo, numero: e.target.value })
                                     }
                                     style={{ marginTop: 10 }}
                                 />
@@ -235,6 +299,8 @@ function Inserisci() {
                             <Col md={8}>
                                 <Form.Control
                                     type="email"
+                                    {...register('email')}
+                                    className={`form-control ${errors.email ? 'is-invalid' : ''}`}
                                     placeholder='Email'
                                     value={email}
                                     onChange={e =>
@@ -243,6 +309,7 @@ function Inserisci() {
                                     style={{ marginTop: 10 }}
                                 />
                             </Col>
+                            <div className="invalid-feedback">{errors.email?.message}</div>
                         </Form.Group>
 
                         <Form.Group as={Row} style={{ marginTop: 10 }}>
@@ -261,6 +328,8 @@ function Inserisci() {
                             <Col md={3}>
                                 <Form.Control
                                     type="text"
+                                    {...register('telefono')}
+                                    className={`form-control ${errors.telefono ? 'is-invalid' : ''}`}
                                     placeholder='Telefono'
                                     value={telefono}
                                     onChange={e =>
@@ -268,6 +337,7 @@ function Inserisci() {
                                     }
                                     style={{ marginTop: 10 }}
                                 />
+                                <div className="invalid-feedback">{errors.telefono?.message}</div>
                             </Col>
                             <Col md={7}>
                                 <Form.Control
@@ -281,8 +351,8 @@ function Inserisci() {
                             </Col>
                         </Form.Group>
 
-                        <div className="d-flex justify-content-end" style={{marginTop: 20}}>
-                            <Button variant="warning" type="button" onClick={onClickSuInserisci} style={{ marginTop: 10 }} >
+                        <div className="d-flex justify-content-end" style={{ marginTop: 20 }}>
+                            <Button variant="warning" type="submit" style={{ marginTop: 10 }} >
                                 Inserisci
                             </Button>
                             <Button variant="light" type="button" onClick={resetCampi} style={{ marginTop: 10, marginLeft: 10 }}>
@@ -297,8 +367,6 @@ function Inserisci() {
 }
 
 export default Inserisci;
-
-
 
 
 
