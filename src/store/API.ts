@@ -1,109 +1,142 @@
-import { createApi, fetchBaseQuery, FetchBaseQueryError, FetchBaseQueryMeta } from "@reduxjs/toolkit/query/react"
-import IPersona from "../Interfaces/IPersona"
+import {
+  createApi,
+  fetchBaseQuery,
+  FetchBaseQueryError,
+  FetchBaseQueryMeta,
+} from "@reduxjs/toolkit/query/react";
+import INasaImg from "../Interfaces/INasaImg";
+import IPersona from "../Interfaces/IPersona";
+
+const nasaApi = createApi({
+  reducerPath: "nasa",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://api.nasa.gov",
+  }),
+  tagTypes: ["Nasa"],
+
+  endpoints(builder) {
+    return {
+      getImg: builder.query<INasaImg, void>({
+        providesTags: ["Nasa"],
+
+        query: () => {
+          return {
+            url: "/planetary/apod?api_key=q2VxhEqrVB0Vdwid8dWptx6TSTenc60PjHv95w4G",
+            method: "GET",
+          };
+        },
+      }),
+    };
+  },
+});
 
 const contattiApi = createApi({
-    reducerPath: 'contatti',
-    baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:3001"
-    }),
+  reducerPath: "contatti",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "http://localhost:3001",
+  }),
 
-    tagTypes: ["Contatti"],
+  tagTypes: ["Contatti"],
 
-    endpoints(builder) {
-        return {
-            getContatti: builder.query<IPersona[], void>({
+  endpoints(builder) {
+    return {
+      getContatti: builder.query<IPersona[], void>({
+        providesTags: ["Contatti"],
 
-                providesTags: ["Contatti"],
+        query: () => {
+          return {
+            url: "/contatti",
+            method: "GET",
+          };
+        },
+      }),
 
-                query: () => {
-                    return {
-                        url: "/contatti",
-                        method: "GET"
-                    }
-                }
-            }),
+      getContattoById: builder.query<IPersona, number>({
+        query: (id) => ({
+          url: `/contatti/${id}`,
+          method: "GET",
+        }),
+      }),
 
-            getContattoById: builder.query<IPersona, number>({
-                query: (id) => ({
-                    url: `/contatti/${id}`,
-                    method: "GET",
-                }),
-            }),
+      addContatti: builder.mutation<void, IPersona>({
+        invalidatesTags: ["Contatti"],
 
-            addContatti: builder.mutation<void, IPersona>({
+        query: (contatto) => {
+          return {
+            url: "/contatti",
+            method: "POST",
+            body: {
+              ruolo: contatto.ruolo,
+              nome: contatto.nome,
+              cognome: contatto.cognome,
+              dataDiNascita: contatto.dataDiNascita,
+              email: contatto.email,
+              indirizzo: {
+                città: contatto.indirizzo.città,
+                provincia: contatto.indirizzo.provincia,
+                cap: contatto.indirizzo.cap,
+                locazione: contatto.indirizzo.locazione,
+                indirizzo: contatto.indirizzo.indirizzo,
+                numero: contatto.indirizzo.numero,
+              },
+              sesso: contatto.sesso,
+              telefono: contatto.telefono,
+              avatar: contatto.avatar,
+            },
+          };
+        },
+      }),
 
-                invalidatesTags: ['Contatti'],
+      removeContatti: builder.mutation<void, IPersona>({
+        invalidatesTags: ["Contatti"],
 
-                query: (contatto) => {
-                    return {
-                        url: "/contatti",
-                        method: "POST",
-                        body: {
-                            ruolo: contatto.ruolo,
-                            nome: contatto.nome,
-                            cognome: contatto.cognome,
-                            dataDiNascita: contatto.dataDiNascita,
-                            email: contatto.email,
-                            indirizzo: {
-                                città: contatto.indirizzo.città,
-                                provincia: contatto.indirizzo.provincia,
-                                cap: contatto.indirizzo.cap,
-                                locazione: contatto.indirizzo.locazione,
-                                indirizzo: contatto.indirizzo.indirizzo,
-                                numero: contatto.indirizzo.numero
-                            },
-                            sesso: contatto.sesso,
-                            telefono: contatto.telefono,
-                            avatar: contatto.avatar,
-                        }
-                    }
-                }
-            }),
+        query: (contatto) => {
+          return {
+            url: `/contatti/${contatto.id}`,
+            method: "DELETE",
+          };
+        },
+      }),
 
-            removeContatti: builder.mutation<void, IPersona>({
+      updateContatti: builder.mutation<void, IPersona>({
+        invalidatesTags: ["Contatti"],
 
-                invalidatesTags: ['Contatti'],
+        query: (contatto) => {
+          return {
+            url: `/contatti/${contatto.id}`,
+            method: "PUT",
+            body: {
+              ruolo: contatto.ruolo,
+              nome: contatto.nome,
+              cognome: contatto.cognome,
+              dataDiNascita: contatto.dataDiNascita,
+              email: contatto.email,
+              indirizzo: {
+                città: contatto.indirizzo.città,
+                provincia: contatto.indirizzo.provincia,
+                cap: contatto.indirizzo.cap,
+                locazione: contatto.indirizzo.locazione,
+                indirizzo: contatto.indirizzo.indirizzo,
+                numero: contatto.indirizzo.numero,
+              },
+              sesso: contatto.sesso,
+              telefono: contatto.telefono,
+              avatar: contatto.avatar,
+            },
+          };
+        },
+      }),
+    };
+  },
+});
 
-                query: (contatto) => {
-                    return {
-                        url: `/contatti/${contatto.id}`,
-                        method: "DELETE",
-                    }
-                }
-            }),
-
-            updateContatti: builder.mutation<void, IPersona>({
-
-                invalidatesTags: ['Contatti'],
-
-                query: (contatto) => {
-                    return {
-                        url: `/contatti/${contatto.id}`,
-                        method: "PUT",
-                        body: {
-                            ruolo: contatto.ruolo,
-                            nome: contatto.nome,
-                            cognome: contatto.cognome,
-                            dataDiNascita: contatto.dataDiNascita,
-                            email: contatto.email,
-                            indirizzo: {
-                                città: contatto.indirizzo.città,
-                                provincia: contatto.indirizzo.provincia,
-                                cap: contatto.indirizzo.cap,
-                                locazione: contatto.indirizzo.locazione,
-                                indirizzo: contatto.indirizzo.indirizzo,
-                                numero: contatto.indirizzo.numero
-                            },
-                            sesso: contatto.sesso,
-                            telefono: contatto.telefono,
-                            avatar: contatto.avatar,
-                        }
-                    }
-                }
-            })
-        }
-    }
-})
-
-export const { useGetContattiQuery, useAddContattiMutation, useRemoveContattiMutation, useGetContattoByIdQuery, useUpdateContattiMutation } = contattiApi
-export { contattiApi }
+export const {
+  useGetContattiQuery,
+  useAddContattiMutation,
+  useRemoveContattiMutation,
+  useGetContattoByIdQuery,
+  useUpdateContattiMutation,
+} = contattiApi;
+export { contattiApi };
+export const { useGetImgQuery } = nasaApi;
+export { nasaApi };
