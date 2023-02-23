@@ -8,13 +8,13 @@ import Form from 'react-bootstrap/Form';
 import { Alert, Col, Container, Row } from 'react-bootstrap';
 import { useAddContattiMutation } from "../store/API";
 import { useNavigate } from 'react-router';
-import { useForm } from 'react-hook-form';
+import {  useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import FormSubmit from '../Type/FormSubmit';
 import { contattoValidation } from '../Validation/FormValidation';
 
-
 function Inserisci() {
+   
 
     const navigate = useNavigate()
 
@@ -61,34 +61,10 @@ function Inserisci() {
     const {
         register,
         handleSubmit,
-        watch,
-        setValue,
         formState: { errors }
     } = useForm<FormSubmit>({
-        mode: 'onChange',
         resolver: yupResolver(contattoValidation)
     });
-
-    useEffect(() => {
-
-        const watchedValues = watch();
-        Object.keys(watchedValues).forEach((key)  => {
-            setValue(key as keyof FormSubmit, watchedValues[key as keyof FormSubmit]);
-        });
-
-        // setFocus("nome" , { shouldSelect: false });
-        // setFocus("cognome", { shouldSelect: false });
-        // setFocus("dataDiNascita", { shouldSelect: false });
-        // setFocus("citta", { shouldSelect: false });
-        // setFocus("cap", { shouldSelect: false });
-        // setFocus("indirizzo", { shouldSelect: false });
-        // setFocus("provincia", { shouldSelect: false });
-        // setFocus("civico", { shouldSelect: false });
-        // setFocus("email", { shouldSelect: false });
-        // setFocus("telefono", { shouldSelect: false });
-        // setFocus("avatar", { shouldSelect: false });
-
-    }, [setValue, watch]);
 
     const onSubmit = (data: FormSubmit) => {
         const nuovoContatto: IPersona = {

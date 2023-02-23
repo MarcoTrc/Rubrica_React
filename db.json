@@ -37,25 +37,6 @@
       "telefono": "3891413371",
       "avatar": "https://curtinvet.com.au/wp-content/uploads/2022/03/person-placeholder-female.jpg",
       "id": 2
-    },
-    {
-      "ruolo": "admin",
-      "nome": "Francesco",
-      "cognome": "Camerino",
-      "dataDiNascita": "2001-09-18T00:00:00.000Z",
-      "email": "fraca@gmail.com",
-      "indirizzo": {
-        "città": "lecce",
-        "provincia": "le",
-        "cap": "73100",
-        "locazione": "piazza",
-        "indirizzo": "Mazzini",
-        "numero": "1"
-      },
-      "sesso": "M",
-      "telefono": "3331122333",
-      "avatar": "https://png.pngtree.com/png-vector/20220621/ourmid/pngtree-default-placeholder-businessman-half-length-portr-png-image_5155184.png",
-      "id": 4
     }
   ]
 }

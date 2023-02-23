@@ -144,11 +144,6 @@ function Modifica() {
             content = (
 
                 <>
-
-                    {data.nome}
-                    {data.cognome}
-                    {data.email}
-
                     <Container style={{ marginTop: 20 }}>
                         <Alert show={showAlert} variant="success" onClose={handleAlertClose} dismissible>
                             <Alert.Heading>Modifica avvenuta con successo!</Alert.Heading>
@@ -363,7 +358,6 @@ function Modifica() {
                                         </Form.Control>
                                     </Col>
                                 </Form.Group>
-
                                 <div className="d-flex justify-content-end" style={{ marginTop: 20 }}>
                                     <Button variant="warning" type="submit" style={{ marginTop: 10 }} >
                                         Aggiorna

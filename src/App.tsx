@@ -8,7 +8,8 @@ import Contatti from './Views/Contatti';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dettaglio from './Views/Dettaglio';
 import Modifica from './Views/Modifica';
-import Test from './Components/test';
+import { ErrorPage } from './Components/ErrorPage';
+
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
             <Route path={RouteEnum.Contatti} element={<Contatti />} />
             <Route path={RouteEnum.Dettaglio} element={<Dettaglio />} />
             <Route path={RouteEnum.Modifica} element={<Modifica />} />
-            <Route path={RouteEnum.Test} element={<Test />} />
+            <Route path={RouteEnum.Error} element={<ErrorPage />} />
           </Route>
         </Routes>
       </Router>

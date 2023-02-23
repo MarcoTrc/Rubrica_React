@@ -5,7 +5,7 @@ enum RouteEnum {
     Contatti = "/contatti",
     Dettaglio = "/dettaglio/:id",
     Modifica = "/modifica/:id",
-    Test = "/test"
+    Error = "/errorPage"
 
 }
 
