@@ -66,6 +66,7 @@ function Inserisci() {
         resolver: yupResolver(contattoValidation)
     });
 
+
     const onSubmit = (data: FormSubmit) => {
         const nuovoContatto: IPersona = {
             ruolo: ruolo,

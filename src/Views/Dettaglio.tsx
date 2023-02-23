@@ -21,10 +21,10 @@ function Dettaglio() {
         <Container>
             <h1 style={{ marginTop: 30 }}>Dettaglio {data?.nome} {data?.cognome}</h1>
             <Row style={{ marginTop: 30, padding: 'auto' }}>
-                <Col md={3} style={{ padding: 'auto' }}>
+                <Col md={6} lg={4} style={{ padding: 'auto' }}>
                     <img src={data?.avatar} alt="Avatar" style={{ width: 310 }} />
                 </Col>
-                <Col md={4}>
+                <Col md={6} lg={4}>
                     <Row>
                         <Col>
                             <b>Ruolo:</b> {data?.ruolo}
