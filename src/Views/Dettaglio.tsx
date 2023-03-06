@@ -18,7 +18,7 @@ function Dettaglio() {
     const date = moment(data?.dataDiNascita).format('DD-MMMM-YYYY');
 
     return (
-        <Container>
+        <Container style={{marginTop:100, marginBottom: 100}}>
             <h1 style={{ marginTop: 30 }}>Dettaglio {data?.nome} {data?.cognome}</h1>
             <Row style={{ marginTop: 30, padding: 'auto' }}>
                 <Col md={6} lg={4} style={{ padding: 'auto' }}>

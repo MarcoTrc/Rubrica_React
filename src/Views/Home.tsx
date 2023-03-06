@@ -1,5 +1,5 @@
 import { Skeleton } from "@mui/material";
-import { Row, Col, Container, Spinner } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router";
@@ -19,11 +19,7 @@ function Home() {
   if (isLoading) {
     content = 
     <>
-    <Skeleton variant="circular" width={20} height={20} />
-    <Skeleton variant="circular" width={40} height={40} />
-    <Skeleton variant="circular" width={80} height={80} />
-    <Skeleton variant="circular" width={40} height={40} />
-    <Skeleton variant="circular" width={20} height={20} />
+    <Skeleton variant="circular" width={60} height={60} />
     </>
   } else if (error) {
     content = <ErrorPage></ErrorPage>;
@@ -40,7 +36,7 @@ function Home() {
   }
 
   return (
-    <Container style={{ marginTop: 70 }}>
+    <Container style={{ marginTop: 100, marginBottom: 100 }}>
       <Row>
         <h1>Benvenuto nell'App Rubrica</h1>
         <Col style={{ marginTop: 35 }}>

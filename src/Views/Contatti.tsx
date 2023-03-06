@@ -20,7 +20,7 @@ function Contatti() {
 
 
     return (
-        <Container style={{ marginTop: 50 }}>
+        <Container style={{ marginTop: 100 }}>
             <h1>Contatti</h1>
             <div style={{marginTop: 30}}>
                 {data?.map((contatto: IPersona, index) => <Row key={index} style={{ borderTop: 'solid 1px', padding: 'auto', margin: 10 }}>

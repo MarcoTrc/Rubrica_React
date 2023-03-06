@@ -37,6 +37,25 @@
       "telefono": "3891413371",
       "avatar": "https://curtinvet.com.au/wp-content/uploads/2022/03/person-placeholder-female.jpg",
       "id": 2
+    },
+    {
+      "ruolo": "user",
+      "nome": "mesciu",
+      "cognome": "massi",
+      "dataDiNascita": "1984-08-21T00:00:00.000Z",
+      "email": "mesciu@gmail.com",
+      "indirizzo": {
+        "città": "lecce",
+        "provincia": "LE",
+        "cap": "73100",
+        "locazione": "via",
+        "indirizzo": "lemani dal naso",
+        "numero": "1"
+      },
+      "sesso": "M",
+      "telefono": "3331122333",
+      "avatar": "https://png.pngtree.com/png-vector/20220617/ourmid/pngtree-default-placeholder-businessman-half-length-portr-png-image_5120974.png",
+      "id": 3
     }
   ]
 }

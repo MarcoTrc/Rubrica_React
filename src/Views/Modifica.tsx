@@ -144,7 +144,7 @@ function Modifica() {
             content = (
 
                 <>
-                    <Container style={{ marginTop: 20 }}>
+                    <Container style={{ marginTop: 100 }}>
                         <Alert show={showAlert} variant="success" onClose={handleAlertClose} dismissible>
                             <Alert.Heading>Modifica avvenuta con successo!</Alert.Heading>
                             <p>
@@ -152,8 +152,8 @@ function Modifica() {
                             </p>
                         </Alert>
                     </Container>
-                    <h1 style={{ marginLeft: 20, marginTop: 30 }}>Modifica contatto</h1>
-                    <Row style={{ marginLeft: 20 }}>
+                    <h1 style={{ marginLeft: 20, marginTop: 100 }}>Modifica contatto</h1>
+                    <Row style={{ marginLeft: 20, marginBottom: 100}}>
                         <Col md={8} style={{ border: 'solid 1px gray', borderRadius: 10, padding: 20 }}>
                             <Form onSubmit={handleSubmit(onSubmit)}>
                                 <Form.Group as={Row} style={{ marginTop: 20 }}>

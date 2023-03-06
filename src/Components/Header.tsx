@@ -11,7 +11,7 @@ function Header() {
     // const navigate = useNavigate()
 
     return (
-            <Navbar bg="light" expand="lg">
+            <Navbar bg="light" expand="lg" fixed='top'>
                 <Navbar.Brand><img src="https://cdn.pixabay.com/photo/2016/01/03/11/24/gear-1119298_960_720.png" className="App-logo" /></Navbar.Brand>
                 <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
